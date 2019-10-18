@@ -1,0 +1,5 @@
+예외처리 부분 Debugging
+Confidence level 정하는 부분 check
+delta t 생성 -> 이전 프레임의 gpp point로 hough region의 영역을 움직이는 부분 유무에 따른 결과 비교
+init vector가 너무 흔들림. rho, theta 값을 잘 보도록. 
+

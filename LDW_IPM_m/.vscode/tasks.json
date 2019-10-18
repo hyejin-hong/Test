@@ -1,0 +1,96 @@
+{
+    "version": "2.0.0",
+    "runner": "terminal",
+    "type": "shell",
+    "echoCommand": true,
+    "presentation": {
+        "reveal": "always"
+    },
+    "tasks": [
+        {
+            "label": "save and compile for C++",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++11",
+                "${workspaceFolder}/src/DetectLane.cpp",
+                "${workspaceFolder}/src/DetectCross.cpp",
+                "${workspaceFolder}/src/cJSON.cpp",
+                "${workspaceFolder}/src/LDW_IPM_main.cpp",                
+                "-lopencv_core",
+                "-lopencv_highgui",
+                "-lopencv_imgproc",
+                "${workspaceFolder}/lib/libcfw.so",
+                "-I",
+                "${workspaceFolder}/include/",
+                "-o",
+                "${workspaceFolder}/bin/comm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "execute",
+            "command": "cd ${workspaceFolder}/bin && ./comm",
+            "group": "test"
+        },
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/bin/g++",
+            "args": [
+                "-g",
+                "-std=c++11",
+                "${workspaceFolder}/src/DetectLane.cpp",
+                "${workspaceFolder}/src/DetectCross.cpp",
+                "${workspaceFolder}/src/cJSON.cpp",
+                "${workspaceFolder}/src/LDW_IPM_main.cpp",         
+                "-lopencv_core",
+                "-lopencv_highgui",
+                "-lopencv_imgproc",
+                "${workspaceFolder}/lib/libcfw.so",
+                "-I",
+                "${workspaceFolder}/include/",
+                "-o",
+                "${workspaceFolder}/bin/comm"
+            ],
+            "options": {
+                "cwd": "/bin"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
+    ]
+}
